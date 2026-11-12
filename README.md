@@ -49,3 +49,46 @@ Control de Versiones:** Git & GitHub
             // ... (Se hace la misma lógica para el caso 3 y 4)
         Fin Segun
     Hasta Que Opcion == 5
+# DIA 3 
+    Diseñar la "Pantalla" de Asientos 
+    ===================================
+          PANTALLA DEL CINE 
+    ===================================
+      Col 0  Col 1  Col 2  Col 3  Col 4
+Fila 0 [ L ]  [ L ]  [ L ]  [ L ]  [ L ]
+Fila 1 [ L ]  [ X ]  [ X ]  [ L ]  [ L ]
+Fila 2 [ L ]  [ L ]  [ L ]  [ L ]  [ L ]
+Fila 3 [ L ]  [ X ]  [ X ]  [ X ]  [ L ]
+Fila 4 [ L ]  [ L ]  [ L ]  [ L ]  [ L ]
+
+L = Libre  |  X = Ocupado
+=======================================
+# Menú Principal
+-----------------------------------
+   SISTEMA DE TAQUILLA - CINE
+-----------------------------------
+1. Ver asientos disponibles
+2. Reservar un asiento
+3. Cancelar / Liberar asiento
+4. Ver reporte de ocupación (%)
+5. Salir del sistema
+-----------------------------------
+Elige una opción (1-5): _
+Los Mensajes y Preguntas (Interacción)
+Cuando elige reservar (Opción 2):
+
+Programa dice: Ingresa el número de fila (0-4):
+
+Programa dice: Ingresa el número de columna (0-4):
+
+Respuesta de Éxito: Asiento reservado exitosamente.
+
+Respuesta de Error: asiento ya está ocupado.
+
+Cuando elige ver estadísticas (Opción 4):
+
+Programa dice:
+REPORTE DE ESTADÍSTICAS:
+Asientos ocupados: 5
+Asientos libres: 20
+Ocupación de la sala: 20.0%
