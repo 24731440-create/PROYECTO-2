@@ -1,8 +1,6 @@
 # Sistema de Administración de Asientos de Cine
-# Proyecto Integrador - Módulo de Captura
+# Proyecto Integrador - Módulos de Captura y Consultas (Día 4 y 5)
 
-# 1. Implementación del arreglo (Matriz 5x5)
-# Inicializamos todos los asientos en 0 (Disponibles)
 asientos = [
     [0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0],
@@ -12,7 +10,6 @@ asientos = [
 ]
 
 def mostrar_sala():
-    """Recorre la matriz y muestra el estado visual de los asientos."""
     print("\n=======================================")
     print("           PANTALLA DEL CINE")
     print("=======================================")
@@ -22,15 +19,14 @@ def mostrar_sala():
         fila_visual = f"Fila {indice_fila} "
         for asiento in asientos[indice_fila]:
             if asiento == 0:
-                fila_visual += "[ L ]  " # Libre
+                fila_visual += "[ L ]  "
             else:
-                fila_visual += "[ X ]  " # Ocupado
+                fila_visual += "[ X ]  "
         print(fila_visual)
     print("\nL = Libre  |  X = Ocupado")
     print("=======================================")
 
 def reservar_asiento():
-    """Captura datos para reservar y valida que las coordenadas sean correctas."""
     print("\n--- RESERVAR UN ASIENTO ---")
     try:
         fila = int(input("Ingresa el número de fila (0-4): "))
@@ -38,50 +34,64 @@ def reservar_asiento():
         
         if 0 <= fila <= 4 and 0 <= columna <= 4:
             if asientos[fila][columna] == 0:
-                asientos[fila][columna] = 1
-                print(" Éxito: Asiento reservado.")
+                asientos[fila][columna] = 1 
+                print("Exito: Asiento reservado")
             else:
-                print(" Error: El asiento ya está ocupado.")
+                print("Error: Asiento ocupado")
         else:
-            print(" Error: Las coordenadas están fuera de rango (deben ser de 0 a 4).")
+            print("Error: Las coordenadas están fuera de rango.")
     except ValueError:
-        print(" Error: Debes ingresar números enteros válidos.")
+        print("Error: Debes ingresar números enteros.")
 
 def liberar_asiento():
-    """Captura datos para liberar un asiento y valida la acción."""
     print("\n--- LIBERAR UN ASIENTO ---")
     try:
         fila = int(input("Ingresa el número de fila (0-4): "))
         columna = int(input("Ingresa el número de columna (0-4): "))
         
-        # Validación de rango
         if 0 <= fila <= 4 and 0 <= columna <= 4:
             if asientos[fila][columna] == 1:
-                asientos[fila][columna] = 0 # Cambiamos de Ocupado a Libre
-                print(" Éxito: Asiento liberado con éxito.")
+                asientos[fila][columna] = 0
+                print("Exito: Liberado con éxito.")
             else:
-                print(" Aviso: El asiento ya estaba libre.")
+                print("Aviso: El asiento ya estaba libre.")
         else:
-            print(" Error: Las coordenadas están fuera de rango (deben ser de 0 a 4).")
+            print("Error: Las coordenadas están fuera de rango.")
     except ValueError:
-        print(" Error: Debes ingresar números enteros válidos.")
+        print("Error: Debes ingresar números enteros.")
+
+def consultar_disponibilidad():
+    print("\n--- CONSULTAR DISPONIBILIDAD ---")
+    try:
+        fila = int(input("Ingresa el número de fila (0-4): "))
+        columna = int(input("Ingresa el número de columna (0-4): "))
+        
+        if 0 <= fila <= 4 and 0 <= columna <= 4:
+            if asientos[fila][columna] == 0:
+                print(f"El asiento en la fila {fila}, columna {columna} está LIBRE.")
+            else:
+                print(f"El asiento en la fila {fila}, columna {columna} está OCUPADO.")
+        else:
+            print("Error: Las coordenadas están fuera de rango.")
+    except ValueError:
+        print("Error: Debes ingresar números enteros.")
 
 def menu_principal():
-    """Menú interactivo principal del sistema."""
     opcion = 0
-    while opcion != 5:
+    while opcion != 6:
         print("\n-----------------------------------")
         print("   SISTEMA DE TAQUILLA - CINE")
         print("-----------------------------------")
-        print("1. Ver asientos disponibles")
+        print("1. Mostrar pantalla de la sala")
         print("2. Reservar un asiento")
         print("3. Cancelar / Liberar asiento")
-        print("4. Ver reporte de ocupación ")
-        print("5. Salir del sistema")
+        print("4. Consultar estado de un asiento")
+        print("5. Ver reporte de ocupación ")
+        print("6. Salir del sistema")
         print("-----------------------------------")
         
         try:
-            opcion = int(input("Elige una opción (1-5): "))
+            opcion = int(input("Elige una opción (1-6): "))
             
             if opcion == 1:
                 mostrar_sala()
@@ -90,14 +100,15 @@ def menu_principal():
             elif opcion == 3:
                 liberar_asiento()
             elif opcion == 4:
-                print("\nEn desarrollo... (Módulo de estadísticas)")
+                consultar_disponibilidad()
             elif opcion == 5:
+                print("\nEn desarrollo... (Módulo de estadísticas para el Día 6)")
+            elif opcion == 6:
                 print("\nSaliendo del sistema. ¡Hasta luego!")
             else:
-                print(" Opción no válida. Elige un número del 1 al 5.")
+                print("Opción no válida. Elige un número del 1 al 6.")
         except ValueError:
-            print(" Error: Ingresa solo valores numéricos.")
+            print("Error: Ingresa solo valores numéricos.")
 
-# Punto de inicio del programa
 if __name__ == "__main__":
     menu_principal()
