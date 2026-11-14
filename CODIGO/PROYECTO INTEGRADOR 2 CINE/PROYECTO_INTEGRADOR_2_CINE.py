@@ -1,6 +1,3 @@
-# Sistema de Administración de Asientos de Cine
-# Proyecto Integrador - Módulos de Captura y Consultas (Día 4 y 5)
-
 asientos = [
     [0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0],
@@ -76,6 +73,25 @@ def consultar_disponibilidad():
     except ValueError:
         print("Error: Debes ingresar números enteros.")
 
+def ver_estadisticas():
+    print("\n--- REPORTE DE OCUPACIÓN ---")
+    libres = 0
+    ocupados = 0
+    total_asientos = 25
+
+    for fila in asientos:
+        for asiento in fila:
+            if asiento == 0:
+                libres += 1
+            else:
+                ocupados += 1
+
+    porcentaje_ocupacion = (ocupados / total_asientos) * 100
+
+    print(f"Asientos Disponibles: {libres}")
+    print(f"Asientos Ocupados: {ocupados}")
+    print(f"Porcentaje de Ocupación: {porcentaje_ocupacion}%")
+
 def menu_principal():
     opcion = 0
     while opcion != 6:
@@ -86,7 +102,7 @@ def menu_principal():
         print("2. Reservar un asiento")
         print("3. Cancelar / Liberar asiento")
         print("4. Consultar estado de un asiento")
-        print("5. Ver reporte de ocupación ")
+        print("5. Ver reporte de ocupación")
         print("6. Salir del sistema")
         print("-----------------------------------")
         
@@ -102,7 +118,7 @@ def menu_principal():
             elif opcion == 4:
                 consultar_disponibilidad()
             elif opcion == 5:
-                print("\nEn desarrollo... (Módulo de estadísticas para el Día 6)")
+                ver_estadisticas()
             elif opcion == 6:
                 print("\nSaliendo del sistema. ¡Hasta luego!")
             else:
